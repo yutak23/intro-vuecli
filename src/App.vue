@@ -1,5 +1,15 @@
-<template></template>
+<template>
+  <p>いいね({{ number }})</p>
+</template>
 
-<script></script>
+<script>
+export default {
+  data: function () {
+    return {
+      number: 5,
+    };
+  },
+};
+</script>
 
 <style></style>
