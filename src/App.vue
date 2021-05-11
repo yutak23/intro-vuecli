@@ -3,7 +3,7 @@
     <LikeHeader></LikeHeader>
     <h2>{{ number }}</h2>
     <!-- HTMLでは属性はケバブケースで書くのが慣例なので以下のようにする -->
-    <LikeNumber :total-number="number"></LikeNumber>
+    <LikeNumber></LikeNumber>
     <LikeNumber :total-number="number"></LikeNumber>
   </div>
 </template>
