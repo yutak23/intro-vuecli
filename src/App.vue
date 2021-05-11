@@ -1,14 +1,22 @@
 <template>
   <div>
     <LikeHeader></LikeHeader>
-    <LikeNumber></LikeNumber>
+    <h2>{{ number }}</h2>
+    <!-- HTMLでは属性はケバブケースで書くのが慣例なので以下のようにする -->
+    <LikeNumber :total-number="number"></LikeNumber>
+    <LikeNumber :total-number="number"></LikeNumber>
   </div>
 </template>
 
 <script>
-import LikeHeader from "./components/LikeHeader";
+import LikeHeader from "./components/LikeHeader.vue";
 
 export default {
+  data() {
+    return {
+      number: 10,
+    };
+  },
   components: {
     LikeHeader,
   },
