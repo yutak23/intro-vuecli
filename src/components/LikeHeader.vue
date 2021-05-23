@@ -1,8 +1,9 @@
 <template>
   <div>
-    <slot>
-      <h2>デフォルトのタイトル</h2>
-    </slot>
+    <slot name="title"></slot>
+    <hr />
+    <p>いいねの数</p>
+    <slot name="number"></slot>
   </div>
 </template>
 
