@@ -1,19 +1,12 @@
 <template>
   <div>
-    <LikeHeader headerText="hello">
+    <!-- templateが1つ（デフォルト）しかない場合、子コンポーネントにv-slotを記述する事でスロットプロパティを使える -->
+    <!-- <LikeHeader v-slot:default="slotProps"> ←1つしかtemplateしかない時、それはdefaultなのでそれも省略可能-->
+    <LikeHeader v-slot="slotProps">
+      <p>{{ slotProps }}</p>
       <h2>みなさん</h2>
-
-      <template v-slot:title="slotProps">
-        <h2>こんにちは</h2>
-        <h2>{{ slotProps.user.firstName }}</h2>
-      </template>
-
       <h4>いいねをたくさんもらいましょう</h4>
       <p>よろしくお願いします</p>
-
-      <template v-slot:number>
-        <h2>{{ number }}</h2>
-      </template>
     </LikeHeader>
     <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber>
     <LikeNumber :total-number="number" @my-click="increaseNumber"></LikeNumber>
