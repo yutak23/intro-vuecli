@@ -1,7 +1,6 @@
 <template>
   <div>
-    <slot name="title"></slot>
-    <!-- 以下には親で名前付きでないslotで定義されているもの＝デフォルト（フォールバックコンテンツ）が表示される -->
+    <slot name="title" :user="user" sample="sample"></slot>
     <slot></slot>
     <hr />
     <p>いいねの数</p>
@@ -11,7 +10,14 @@
 
 <script>
 export default {
-  props: ["headerText"],
+  data() {
+    return {
+      user: {
+        firstName: "Jack",
+        lastName: "Donald",
+      },
+    };
+  },
 };
 </script>
 
