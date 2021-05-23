@@ -1,24 +1,15 @@
 <template>
   <div>
-    <slot :user="user" sample="sample"></slot>
+    <slot name="title"></slot>
+    <hr />
     <slot></slot>
     <hr />
-    <p>いいねの数</p>
     <slot></slot>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      user: {
-        firstName: "Jack",
-        lastName: "Donald",
-      },
-    };
-  },
-};
+export default {};
 </script>
 
 <style scoped>
