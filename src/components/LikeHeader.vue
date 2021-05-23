@@ -1,10 +1,10 @@
 <template>
   <div>
-    <slot name="title"></slot>
-    <hr />
     <slot></slot>
     <hr />
-    <slot name="number"></slot>
+    <slot test="test"></slot>
+    <hr />
+    <slot sample="hoge"></slot>
   </div>
 </template>
 

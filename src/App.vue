@@ -1,16 +1,10 @@
 <template>
   <div>
-    <LikeHeader>
-      <!-- <p>{{ slotProps }}</p> -->
+    <LikeHeader #default="slotProps">
+      <p>{{ slotProps }}</p>
       <h2>みなさん</h2>
       <h4>いいねをたくさんもらいましょう</h4>
       <p>よろしくお願いします</p>
-      <template #[title]>
-        <p>動的なスロット名の定義</p>
-      </template>
-      <template #number>
-        <p>{{ number }}</p>
-      </template>
     </LikeHeader>
     <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber>
     <LikeNumber :total-number="number" @my-click="increaseNumber"></LikeNumber>
