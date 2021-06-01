@@ -1,10 +1,6 @@
 <template>
   <div>
     <slot></slot>
-    <hr />
-    <slot test="test"></slot>
-    <hr />
-    <slot sample="hoge"></slot>
   </div>
 </template>
 
