@@ -7,11 +7,6 @@
     <button @click="currenComponent = 'Home'">Home</button>
     <button @click="currenComponent = 'About'">About</button>
     <component :is="currenComponent"></component>
-
-    <!-- 以下のようにv-ifで条件に応じて動的にcomponentを切り替える事もできるが美しくない
-         <component></component>を使う -->
-    <!-- <About v-if="currenComponent === 'About'"></About>
-    <Home v-if="currenComponent === 'Home'"></Home> -->
   </div>
 </template>
 
