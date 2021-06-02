@@ -17,7 +17,7 @@
           type="text"
           class="form-control"
           id="title"
-          v-model="eventData.title"
+          v-model.lazy="eventData.title"
         />
         <p>{{ eventData.title }}</p>
       </div>
