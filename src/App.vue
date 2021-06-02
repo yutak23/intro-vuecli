@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-sm">
     <LikeHeader>
       <h3>はじめまして</h3>
     </LikeHeader>
@@ -9,6 +9,19 @@
     <keep-alive>
       <component :is="currenComponent"></component>
     </keep-alive>
+    <div>
+      <h2>イベントのフォーム</h2>
+      <div class="mb-3">
+        <label for="title" class="form-label">タイトル</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          v-model="eventData.title"
+        />
+        <p>{{ eventData.title }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +35,9 @@ export default {
     return {
       number: 10,
       currenComponent: "Home",
+      eventData: {
+        title: "タイトル",
+      },
     };
   },
   components: {
@@ -37,12 +53,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-h1 {
-  color: red;
-}
-div {
-  border: 1px solid blue;
-}
-</style>
