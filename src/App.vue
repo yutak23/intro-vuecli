@@ -12,14 +12,14 @@
     <div>
       <h2>イベントのフォーム</h2>
       <div class="mb-3">
-        <label for="maxNumber" class="form-label">最大人数</label>
+        <label for="host" class="form-label">主催者</label>
         <input
-          type="number"
+          type="text"
           class="form-control"
-          id="maxNumber"
-          v-model.number="eventData.maxNumber"
+          id="host"
+          v-model.trim="eventData.host"
         />
-        <p>{{ typeof eventData.maxNumber }}</p>
+        <pre>{{ eventData.host }}</pre>
       </div>
     </div>
   </div>
@@ -36,8 +36,7 @@ export default {
       number: 10,
       currenComponent: "Home",
       eventData: {
-        title: "タイトル",
-        maxNumber: 0,
+        host: "",
       },
     };
   },
