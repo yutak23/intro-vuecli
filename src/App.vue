@@ -11,16 +11,16 @@
     </keep-alive>
     <div>
       <h2>イベントのフォーム</h2>
-      <div class="form-floating">
-        <textarea
-          class="form-control"
-          placeholder="Leave a comment here"
-          id="detail"
-          v-model="eventData.detail"
-        ></textarea>
-        <label for="detail">イベントの内容</label>
-        <p class="new-line">{{ eventData.detail }}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="isPrivate"
+          v-model="eventData.isPrivate"
+        />
+        <label class="form-check-label" for="isPrivate">非公開</label>
       </div>
+      <p>{{ eventData.isPrivate }}</p>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
       number: 10,
       currenComponent: "Home",
       eventData: {
-        detail: "",
+        isPrivate: false,
       },
     };
   },
