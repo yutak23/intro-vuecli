@@ -11,15 +11,15 @@
     </keep-alive>
     <div>
       <h2>イベントのフォーム</h2>
-      <div class="mb-3">
-        <label for="host" class="form-label">主催者</label>
-        <input
-          type="text"
+      <div class="form-floating">
+        <textarea
           class="form-control"
-          id="host"
-          v-model.trim="eventData.host"
-        />
-        <pre>{{ eventData.host }}</pre>
+          placeholder="Leave a comment here"
+          id="detail"
+          v-model="eventData.detail"
+        ></textarea>
+        <label for="detail">イベントの内容</label>
+        <p class="new-line">{{ eventData.detail }}</p>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
       number: 10,
       currenComponent: "Home",
       eventData: {
-        host: "",
+        detail: "",
       },
     };
   },
@@ -53,3 +53,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.new-line {
+  white-space: pre;
+}
+</style>
