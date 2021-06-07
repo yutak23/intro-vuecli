@@ -11,16 +11,38 @@
     </keep-alive>
     <div>
       <h2>イベントのフォーム</h2>
+      <p>参加条件</p>
       <div class="form-check">
         <input
           class="form-check-input"
           type="checkbox"
-          id="isPrivate"
-          v-model="eventData.isPrivate"
+          id="10"
+          value="10代"
+          v-model="eventData.target"
         />
-        <label class="form-check-label" for="isPrivate">非公開</label>
+        <label class="form-check-label" for="10">10代</label>
       </div>
-      <p>{{ eventData.isPrivate }}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="20"
+          value="20代"
+          v-model="eventData.target"
+        />
+        <label class="form-check-label" for="20">20代</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="30"
+          value="30代"
+          v-model="eventData.target"
+        />
+        <label class="form-check-label" for="30">30代</label>
+      </div>
+      <p>{{ eventData.target }}</p>
     </div>
   </div>
 </template>
@@ -36,7 +58,7 @@ export default {
       number: 10,
       currenComponent: "Home",
       eventData: {
-        isPrivate: false,
+        target: [],
       },
     };
   },
@@ -53,9 +75,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.new-line {
-  white-space: pre;
-}
-</style>
