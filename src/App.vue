@@ -11,38 +11,29 @@
     </keep-alive>
     <div>
       <h2>イベントのフォーム</h2>
-      <p>参加条件</p>
+      <p>参加費</p>
+      <!-- 本来nameでradioをひとくくりにするがv-modelでそれを実現する事もできる -->
       <div class="form-check">
         <input
           class="form-check-input"
-          type="checkbox"
-          id="10"
-          value="10代"
-          v-model="eventData.target"
+          type="radio"
+          id="free"
+          value="無料"
+          v-model="eventData.price"
         />
-        <label class="form-check-label" for="10">10代</label>
+        <label class="form-check-label" for="free">無料</label>
       </div>
       <div class="form-check">
         <input
           class="form-check-input"
-          type="checkbox"
-          id="20"
-          value="20代"
-          v-model="eventData.target"
+          type="radio"
+          id="paid"
+          value="有料"
+          v-model="eventData.price"
         />
-        <label class="form-check-label" for="20">20代</label>
+        <label class="form-check-label" for="paid">有料</label>
       </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="30"
-          value="30代"
-          v-model="eventData.target"
-        />
-        <label class="form-check-label" for="30">30代</label>
-      </div>
-      <p>{{ eventData.target }}</p>
+      <p>{{ eventData.price }}</p>
     </div>
   </div>
 </template>
@@ -58,7 +49,7 @@ export default {
       number: 10,
       currenComponent: "Home",
       eventData: {
-        target: [],
+        price: "無料",
       },
     };
   },
