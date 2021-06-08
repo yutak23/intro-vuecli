@@ -11,29 +11,20 @@
     </keep-alive>
     <div>
       <h2>イベントのフォーム</h2>
-      <p>参加費</p>
-      <!-- 本来nameでradioをひとくくりにするがv-modelでそれを実現する事もできる -->
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          id="free"
-          value="無料"
-          v-model="eventData.price"
-        />
-        <label class="form-check-label" for="free">無料</label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          id="paid"
-          value="有料"
-          v-model="eventData.price"
-        />
-        <label class="form-check-label" for="paid">有料</label>
-      </div>
-      <p>{{ eventData.price }}</p>
+      <p>開催場所</p>
+      <select class="form-select" v-model="eventData.location">
+        <option v-for="location in locations" :key="location">
+          {{ location }}
+        </option>
+      </select>
+      <p>{{ eventData.location }}</p>
+
+      <select class="form-select" v-model="eventData.locations" multiple>
+        <option v-for="location in locations" :key="location">
+          {{ location }}
+        </option>
+      </select>
+      <p>{{ eventData.locations }}</p>
     </div>
   </div>
 </template>
@@ -49,8 +40,10 @@ export default {
       number: 10,
       currenComponent: "Home",
       eventData: {
-        price: "無料",
+        location: "東京",
+        locations: [],
       },
+      locations: ["東京", "名古屋", "大阪"],
     };
   },
   components: {
