@@ -11,20 +11,33 @@
     </keep-alive>
     <div>
       <h2>イベントのフォーム</h2>
-      <p>開催場所</p>
-      <select class="form-select" v-model="eventData.location">
-        <option v-for="location in locations" :key="location">
-          {{ location }}
-        </option>
-      </select>
-      <p>{{ eventData.location }}</p>
+      <p>タイトル</p>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="タイトル"
+          v-model="eventData.title"
+        />
+        <label for="title">タイトル</label>
+      </div>
 
-      <select class="form-select" v-model="eventData.locations" multiple>
-        <option v-for="location in locations" :key="location">
-          {{ location }}
-        </option>
-      </select>
-      <p>{{ eventData.locations }}</p>
+      <!-- 上記のv-modelを使った双方向データバインディングは、以下のように":valueと@input"で書き換えできる -->
+      <!-- ※<input>タグでtype="text"の場合の話でその他のチェックボックス・ラジオボタンなどでは違うので注意 -->
+      <!-- （ちなみに、v-model.lazyは@changeで同じ事が実現できる） -->
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="title2"
+          placeholder="タイトル"
+          :value="eventData.title"
+          @input="eventData.title = $event.target.value"
+        />
+        <label for="title2">タイトル</label>
+      </div>
+      <p>{{ eventData.title }}</p>
     </div>
   </div>
 </template>
@@ -40,10 +53,8 @@ export default {
       number: 10,
       currenComponent: "Home",
       eventData: {
-        location: "東京",
-        locations: [],
+        title: "",
       },
-      locations: ["東京", "名古屋", "大阪"],
     };
   },
   components: {
