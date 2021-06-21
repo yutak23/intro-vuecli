@@ -7,28 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 Vue.config.productionTip = false
 Vue.component('LikeNumber', LikeNumber);
-Vue.directive('border', {
-  // フック関数（プロセスのどのタイミングで何をする）を定義できる（定義しない事もできる）
-  // コンポーネントのライフサイクルフックと同じようなイメージでOK
-  // 以下の中でもbind, updateは最もよく使われる。そのため省略記法もある。
-  bind(el, binding, vnode) {
-    // ディレクティブが初めて対象の要素に紐づいた時
-    // 1度しか呼ばれない
-  },
-  inserted(el, binding, vnode) {
-    // 親Nodeに挿入された時
-    // 実際にDOMに（VNode仮想ノードに）描画されるタイミングで、コンポーネントでいう$mountと同じイメージ
-  },
-  update(el, binding, vnode, oldNode) {
-    // コンポーネントが更新される度に（子コンポーネント(のVNode仮想ノード)が更新される前＝親から何かpropsでデータが渡ってくる場合それが渡ってくるが子のVNodeはまだ変わっていないタイミング）
-  },
-  componentUpdate(el, binding, vnode, oldNode) {
-    // コンポーネントが更新される度に（子コンポーネント(のVNode仮想ノード)が更新される前＝親から何かpropsでデータが渡ってくる場合それが渡ってきて子のVNodeも変わったタイミング）
-  },
-  unbind(el, binding, vnode) {
-    // ディレクティブが紐づいている要素から取り除かれた時
-    // コンポーネントでいうdestroyedのイメージ
-  }
+
+// bindとupdateは基本同じ内容になる
+// ex）値を受け取って赤色とか黄色に変えるとかは、bind・updateの両方でやる事になりほぼ同じ内容になる
+// ので、bind・updateは1つの関数として書ける
+Vue.directive('border', function (el) {
+  // el : カスタムディレクティブを定義している要素そのもの
+  // 今回で言えば "<p></p>" がelになるので以下のようにそのstyleを指定するとかできる
+  el.style.border = 'solid black 2px'
 });
 
 new Vue({

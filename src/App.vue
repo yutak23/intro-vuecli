@@ -4,18 +4,16 @@
       <h3>はじめまして</h3>
     </LikeHeader>
     <LikeNumber :total-number="number" @my-click="increaseNumber"></LikeNumber>
-    <button @click="currenComponent = 'Home'">Home</button>
-    <button @click="currenComponent = 'About'">About</button>
-    <keep-alive>
-      <component :is="currenComponent"></component>
-    </keep-alive>
+    <div class="mt-5">
+      <button @click="currenComponent = 'Home'">Home</button>
+      <button @click="currenComponent = 'About'">About</button>
+      <keep-alive>
+        <component :is="currenComponent" class="mt-3"></component>
+      </keep-alive>
+    </div>
     <div class="mt-5">
       <h2>イベントのフォーム</h2>
       <EventTitle v-model="eventData.title"></EventTitle>
-      <!-- <EventTitle
-        :value="eventData.title"
-        @input="eventData.title = $event"
-      ></EventTitle> -->
     </div>
   </div>
 </template>
