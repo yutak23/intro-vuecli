@@ -9,7 +9,7 @@
     <keep-alive>
       <component :is="currenComponent"></component>
     </keep-alive>
-    <div>
+    <div class="mt-5">
       <h2>イベントのフォーム</h2>
       <EventTitle v-model="eventData.title"></EventTitle>
       <!-- <EventTitle
