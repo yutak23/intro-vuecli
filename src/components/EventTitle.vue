@@ -9,10 +9,11 @@
         placeholder="タイトル"
         :value="value"
         @input="$emit('input', $event.target.value)"
+        autocomplete="off"
       />
       <label for="title">タイトル</label>
     </div>
-    <p>{{ value }}</p>
+    <pre>{{ value }}</pre>
   </div>
 </template>
 
