@@ -4,7 +4,7 @@
       {{ tmpData }}
     </p>
     <h2>{{ title | upperCase }}</h2>
-    <h4>{{ subTitle | upperCase }}</h4>
+    <h4>{{ subTitle | lowerCase }}</h4>
   </div>
 </template>
 
@@ -26,16 +26,11 @@ export default {
       subTitle: "Tokyo is a great city",
     };
   },
-  // フィルターを使わずcomputedでやろうとすると以下のように1つ1つに対してcomputedが必要で手間
-  // フィルターを定義し、パイプ(|)でフィルターを指定するとフォーマッティングが簡単にできる（Angularのパイプと同じ）
-  // computed: {
-  //   upperCaseTitle() {
-  //     return this.title.toUpperCase();
-  //   },
-  //   upperCaseSubTitle() {
-  //     return this.subTitle.toUpperCase();
-  //   },
-  // },
+  filters: {
+    lowerCase(value) {
+      return value.toLowerCase();
+    },
+  },
   directives: {
     border(el, binding) {
       el.style.borderWidth = binding.value.width;
