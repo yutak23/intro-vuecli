@@ -1,5 +1,7 @@
 <template>
-  <p v-border:solid.round.shadow="{ width: '5px', color: 'red' }">Home</p>
+  <p v-border:solid.round.shadow="{ width: '5px', color: 'red' }">
+    {{ tmpData }}
+  </p>
 </template>
 
 <script>
@@ -13,11 +15,15 @@ export default {
   activated() {
     console.log("Home activated");
   },
-  // カスタムディレクティブをローカル登録する方法は以下
-  // ※ただし、これはこのコンポーネントでしか使えないのでそこは要注意
+  data() {
+    return {
+      tmpData: "hello",
+    };
+  },
   directives: {
-    // border: {}, <- このようにオブジェクトで定義してbind, inserted, update, …をそれぞれ定義する事もできる
     border(el, binding) {
+      // this.tmpData = "こんにちは"; <- カスタムディレクティブではthisは使えないので注意！
+      // Error in directive border bind hook: "TypeError: Cannot set property 'tmpData' of undefined" という警告と、TypeError: Cannot set property 'tmpData' of undefinedというエラーが出る
       el.style.borderWidth = binding.value.width;
       el.style.borderColor = binding.value.color;
       el.style.borderStyle = binding.arg;
