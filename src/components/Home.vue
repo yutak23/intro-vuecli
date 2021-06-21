@@ -1,5 +1,5 @@
 <template>
-  <p v-border>Home</p>
+  <p v-border="'5px'">Home</p>
 </template>
 
 <script>
