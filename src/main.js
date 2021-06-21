@@ -14,8 +14,9 @@ Vue.component('LikeNumber', LikeNumber);
 Vue.directive('border', function (el, binding) {
   // el : カスタムディレクティブを定義している要素そのもの
   // 今回で言えば "<p></p>" がelになるので以下のようにそのstyleを指定するとかできる
-  el.style.border = 'solid black 2px'
-  el.style.borderWidth = binding.value
+  el.style.border = 'solid black 2px';
+  el.style.borderWidth = binding.value.width;
+  el.style.borderColor = binding.value.color;
 });
 
 new Vue({

@@ -5,8 +5,20 @@
     </LikeHeader>
     <LikeNumber :total-number="number" @my-click="increaseNumber"></LikeNumber>
     <div class="mt-5">
-      <button @click="currenComponent = 'Home'">Home</button>
-      <button @click="currenComponent = 'About'">About</button>
+      <button
+        type="button"
+        class="btn btn-primary me-2"
+        @click="currenComponent = 'Home'"
+      >
+        Home
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary me-2"
+        @click="currenComponent = 'About'"
+      >
+        About
+      </button>
       <keep-alive>
         <component :is="currenComponent" class="mt-3"></component>
       </keep-alive>
