@@ -29,6 +29,8 @@ export default {
   },
   filters: {
     lowerCase(value) {
+      // this.tmpData; <- カスタムディレクティブ同様にfiltersでもthisは使えない
+      // thisを使いたい場合には、computed, methidを用いる
       return value.toLowerCase();
     },
   },
