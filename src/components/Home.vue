@@ -3,34 +3,29 @@
     <p v-border:solid.round.shadow="{ width: '5px', color: 'red' }">
       {{ tmpData }}
     </p>
-    <!-- 複数のフィルタをパイプで設定した場合、末尾のフィルタ関数が適用される -->
-    <h2>{{ title | upperCase | lowerCase }}</h2>
-    <h4>{{ subTitle | lowerCase | upperCase }}</h4>
+    <h2>{{ title | upperCase }}</h2>
+    <h4>{{ subTitle | lowerCase }}</h4>
+    <p>{{ number }}</p>
+    <button type="button" class="btn btn-primary" @click="number++">+1</button>
   </div>
 </template>
 
 <script>
 export default {
-  destroyed() {
-    console.log("Home destroyed");
-  },
-  deactivated() {
-    console.log("Home deactivated");
-  },
-  activated() {
-    console.log("Home activated");
-  },
   data() {
     return {
       tmpData: "hello",
       title: "Welcome to Tokyo",
       subTitle: "Tokyo is a great city",
+      number: 0,
     };
   },
   filters: {
+    upperCase(value) {
+      console.log("filters", "upperCase");
+      return value.toUpperCase();
+    },
     lowerCase(value) {
-      // this.tmpData; <- カスタムディレクティブ同様にfiltersでもthisは使えない
-      // thisを使いたい場合には、computed, methidを用いる
       return value.toLowerCase();
     },
   },
