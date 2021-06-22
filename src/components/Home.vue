@@ -3,8 +3,9 @@
     <p v-border:solid.round.shadow="{ width: '5px', color: 'red' }">
       {{ tmpData }}
     </p>
-    <h2>{{ title | upperCase }}</h2>
-    <h4>{{ subTitle | lowerCase }}</h4>
+    <!-- 複数のフィルタをパイプで設定した場合、末尾のフィルタ関数が適用される -->
+    <h2>{{ title | upperCase | lowerCase }}</h2>
+    <h4>{{ subTitle | lowerCase | upperCase }}</h4>
   </div>
 </template>
 
