@@ -18,3 +18,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+input {
+  width: 200px;
+  transition: width 3s;
+}
+
+input:hover {
+  width: 400px;
+}
+</style>
