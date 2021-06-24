@@ -3,12 +3,10 @@
     <button type="button" class="btn btn-primary" @click="show = !show">
       切り替え
     </button>
-    <transition name="fade">
+    <transition name="fade" appear>
       <p v-if="show">hello</p>
     </transition>
-    <!-- トランジション・アニメーションの両方を定義する場合にはtypeでどちらに合わせるか？を明示的に指定する
-         ※指定しない場合、長い方の時間に合わせてv-ifのDOM削除・追加が走る -->
-    <transition name="slide" type="animation">
+    <transition name="slide" type="animation" appear>
       <p v-if="show">bye</p>
     </transition>
   </div>
