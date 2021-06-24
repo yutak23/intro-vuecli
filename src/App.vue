@@ -1,10 +1,19 @@
 <template>
   <div class="main">
+    <button
+      type="button"
+      class="btn btn-primary me-1"
+      @click="myAnimation = 'slide'"
+    >
+      Slide
+    </button>
+    <button type="button" class="btn btn-primary" @click="myAnimation = 'fade'">
+      Fade
+    </button>
+    <p>{{ myAnimation }}</p>
     <button type="button" class="btn btn-primary" @click="show = !show">
       切り替え
     </button>
-    <!-- 既存のアニメーションライブラリ（Animate.cssなど）を使いたい場合には、以下のようにカスタムトランジションクラスでトランジションの各タイミングでクラスをVue.jsに追加させるように設定できる
-         ※注意点：カスタムトランジションクラスを定義した場合、name属性で定義したトランジションは上書きされる -->
     <transition
       enter-active-class="animate__animated animate__bounce"
       leave-active-class="animate__animated animate__shakeX"
@@ -12,7 +21,7 @@
     >
       <p v-if="show">hello</p>
     </transition>
-    <transition name="slide" type="animation" appear>
+    <transition :name="myAnimation" appear>
       <p v-if="show">bye</p>
     </transition>
   </div>
@@ -23,12 +32,32 @@ export default {
   data() {
     return {
       show: true,
+      myAnimation: "slide",
     };
   },
 };
 </script>
 
 <style scoped>
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-leave {
+  opacity: 1;
+}
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
 .slide-enter,
 .slide-leave-to {
   opacity: 0;
