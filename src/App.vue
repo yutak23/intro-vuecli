@@ -6,14 +6,10 @@
     <transition name="fade">
       <p v-if="show">hello</p>
     </transition>
-    <transition name="slide">
-      <!-- transitionが単一の要素のみしかダメだが、以下のようにタグが1つという意味なので子がいてもOK
-           また、コンポーネントを単一の要素してしてtransitionの中に書く事はできる -->
-      <div v-if="show">
-        <p>bye</p>
-        <p>bye2</p>
-        <p>bye3</p>
-      </div>
+    <!-- トランジション・アニメーションの両方を定義する場合にはtypeでどちらに合わせるか？を明示的に指定する
+         ※指定しない場合、長い方の時間に合わせてv-ifのDOM削除・追加が走る -->
+    <transition name="slide" type="animation">
+      <p v-if="show">bye</p>
     </transition>
   </div>
 </template>
@@ -33,7 +29,7 @@ export default {
   opacity: 0;
 }
 .fade-enter-active {
-  transition: opacity 5s;
+  transition: opacity 0.5s;
 }
 .fade-enter-to {
   opacity: 1;
@@ -42,26 +38,27 @@ export default {
   opacity: 1;
 }
 .fade-leave-active {
-  transition: opacity 5s;
+  transition: opacity 0.5s;
 }
 .fade-leave-to {
   opacity: 0;
 }
 
-/* enter, enter-to, leave, leave-toは、keyframesに指定しているので定義する必要がない（Vue.jsが勝手にやってくれる） */
-/* .slide-enter {
-} */
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+}
 .slide-enter-active {
   animation: slide-in 0.5s;
+  transition: opacity 1s;
 }
-/* .slide-enter-to {
-}
-.slide-leave {
-} */
 .slide-leave-active {
   animation: slide-in 0.5s reverse;
+  transition: opacity 1s;
 }
-/* .slide-leave-to {
+/* 以下にはopacity: 1;を定義するところだが、デフォルトでiなので定義不要 */
+/* .slide-leave,
+.slide-enter-to {
 } */
 
 @keyframes slide-in {
