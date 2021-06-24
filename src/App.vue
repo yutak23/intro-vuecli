@@ -7,7 +7,13 @@
       <p v-if="show">hello</p>
     </transition>
     <transition name="slide">
-      <p v-if="show">bye</p>
+      <!-- transitionが単一の要素のみしかダメだが、以下のようにタグが1つという意味なので子がいてもOK
+           また、コンポーネントを単一の要素してしてtransitionの中に書く事はできる -->
+      <div v-if="show">
+        <p>bye</p>
+        <p>bye2</p>
+        <p>bye3</p>
+      </div>
     </transition>
   </div>
 </template>
