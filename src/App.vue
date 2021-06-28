@@ -11,12 +11,26 @@
       Fade
     </button>
     <p>{{ myAnimation }}</p>
-    <button type="button" class="btn btn-primary" @click="show = !show">
+    <button type="button" class="btn btn-primary me-1" @click="show = !show">
       切り替え
     </button>
-    <!-- 複数の要素を切り替えるトランジションで、以下のようなtransitionは意図した動きにならない
-         理由：Vue.jsでは効率よく描画するためにタグが同じであればその中身だけを切り替える事をするため
-         →これを意図通りにするには"key"属性を付与する（Vue.jsにタグは同じだが違うものとして扱うように指示する） -->
+    <button
+      type="button"
+      class="btn btn-primary me-1"
+      @click="myComponent = 'ComponentA'"
+    >
+      ComponentA
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary me-1"
+      @click="myComponent = 'ComponentB'"
+    >
+      ComponentB
+    </button>
+    <transition name="fade" mode="out-in">
+      <component :is="myComponent"></component>
+    </transition>
     <transition name="fade" mode="out-in">
       <p v-if="show" key="bye">さよなら</p>
       <p v-else key="hello">こんにちは</p>
@@ -35,12 +49,20 @@
 </template>
 
 <script>
+import ComponentA from "./components/ComponentA.vue";
+import ComponentB from "./components/ComponentB.vue";
+
 export default {
   data() {
     return {
       show: true,
       myAnimation: "slide",
+      myComponent: "ComponentA",
     };
+  },
+  components: {
+    ComponentA,
+    ComponentB,
   },
 };
 </script>
