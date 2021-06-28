@@ -11,14 +11,29 @@
       Fade
     </button>
     <p>{{ myAnimation }}</p>
+    <br />
+    <button type="button" class="btn btn-primary" @click="add">追加</button>
+    <ul style="width: 200px; margin: auto">
+      <!-- transition-groupの特徴 
+           ・transition-groupではtransitionと違い(transitionはtemplateタグのようにDOMに描画されない)、DOM上に描画される（デフォルトではspanタグだがtag属性で任意のタグに指定できる）
+           ・modeはない（置き換わる・要素の切り替えという概念がないため）
+           ・7つ目のトランジションクラスv-move(今回だとfade-move)がある -->
+      <transition-group name="fade" tag="div">
+        <li
+          style="cursor: pointer"
+          v-for="(number, index) in numbers"
+          :key="number"
+          @click="remove(index)"
+        >
+          {{ number }}
+        </li>
+      </transition-group>
+    </ul>
+    <br />
     <button type="button" class="btn btn-primary me-1" @click="show = !show">
       切り替え
     </button>
     <br /><br />
-    <!-- :css="false"：JavaScriptのアニメーションのみを有効化する時には、css属性にfalseをbindしてあげる事で、以下の効果が得られる
-         ①意図しないアニメーションの動きにならないようにする（name属性が未定義でもv-enter, ...は暗黙に存在するので）
-         ②CSSのトランジション・アニメーションの処理をskipさせられるのでパフォーマンスを向上させる
-         ※:cssとv-bindさせているのは、文字列のfalseをcss属性に渡すのではなく、booleanのfalseをcss属性に渡すため -->
     <transition
       :css="false"
       @before-enter="beforeEnter"
@@ -73,26 +88,28 @@ export default {
   },
   data() {
     return {
+      numbers: [0, 1, 2],
+      nextNumber: 3,
       show: true,
       myAnimation: "slide",
       myComponent: "ComponentA",
     };
   },
   methods: {
-    /*
-     * JavaScriptsでアニメーション（JavaScriptフック関数）
-     * ※afterEnter, beforeLeave, afterLeave, leaveCancelledは今回は不要（以下の3つだけでアニメーションを作るのは良くある形）
-     */
+    randomIndex() {
+      return Math.floor(Math.random() * this.numbers.length);
+    },
+    add() {
+      this.numbers.splice(this.randomIndex(), 0, this.nextNumber);
+      this.nextNumber += 1;
+    },
+    remove(index) {
+      this.numbers.splice(index, 1);
+    },
     beforeEnter(el) {
-      // 現れる前
       el.style.transform = "scale(0)";
     },
     enter(el, done) {
-      // 現れる時（イメージはtransitionのCSSの"-enter-active"の部分）
-      // 引数のdone：done()の用に関数として宣言し、アニメーションが終わった事をVue.jsに伝えるための関数
-      // done()関数の役割：非同期処理を実行できるようにするためのもの
-      // ※CSSのアニメーションが定義されている場合にはdone()は省略可能（CSSのアニメーションが未定義ならdone()は必須）
-      // ※CSS・JavaScriptのアニメーションの両方を定義して同時に使える。done()がない場合は両方のアニメーションが実行されるが、done()がある場合はCSSのアニメーションが実行されていてもdone()が呼ばれた時点でアニメーションは強制終了になる
       let scale = 0;
       const interval = setInterval(() => {
         el.style.transform = `scale(${scale})`;
@@ -103,20 +120,7 @@ export default {
         }
       }, 100);
     },
-    // afterEnter() {
-    //   // 現れた後
-    //   // ※今回はscale(1)になるので定義不要
-    // },
-    enterCancelled() {
-      // 現れるトランジション・アニメーションがキャンセルされた時
-      // ex) アニメーション実行中にDOMが消えたりしてアニメーションが実行できなくなった時
-    },
-    // beforeLeave() {
-    //   // 消える前
-    //   // ※今回はscale(1)から消えていくので定義不要
-    // },
     leave(el, done) {
-      // 消える時（イメージはtransitionのCSSの"-leave-active"の部分）
       let scale = 1;
       const interval = setInterval(() => {
         el.style.transform = `scale(${scale})`;
@@ -127,19 +131,14 @@ export default {
         }
       }, 100);
     },
-    // afterLeave() {
-    //   // 消えた後
-    //   // ※今回は消えた後はscale(0)なので定義不要
-    // },
-    // leaveCancelled() {
-    //   // 消えるトランジション・アニメーションがキャンセルされたとき
-    //   // ※v-showの時だけ実行される
-    // },
   },
 };
 </script>
 
 <style scoped>
+.fade-move {
+  transition: transform 1s;
+}
 .fade-enter {
   opacity: 0;
 }
@@ -154,6 +153,8 @@ export default {
 }
 .fade-leave-active {
   transition: opacity 0.5s;
+  position: absolute;
+  width: 170px;
 }
 .fade-leave-to {
   opacity: 0;
