@@ -15,15 +15,15 @@
       切り替え
     </button>
     <br /><br />
+    <!-- :css="false"：JavaScriptのアニメーションのみを有効化する時には、css属性にfalseをbindしてあげる事で、以下の効果が得られる
+         ①意図しないアニメーションの動きにならないようにする（name属性が未定義でもv-enter, ...は暗黙に存在するので）
+         ②CSSのトランジション・アニメーションの処理をskipさせられるのでパフォーマンスを向上させる
+         ※:cssとv-bindさせているのは、文字列のfalseをcss属性に渡すのではなく、booleanのfalseをcss属性に渡すため -->
     <transition
+      :css="false"
       @before-enter="beforeEnter"
       @enter="enter"
-      @after-enter="afterEnter"
-      @enter-cancelled="enterCancelled"
-      @before-leave="beforeLeave"
       @leave="leave"
-      @after-leave="afterLeave"
-      @leave-cancelled="leaveCancelled"
     >
       <div class="circle" v-if="show"></div>
     </transition>
@@ -80,10 +80,12 @@ export default {
   },
   methods: {
     /*
-     * JavaScriptsでアニメーション（JavaScriptフック関数）を作る時の型
+     * JavaScriptsでアニメーション（JavaScriptフック関数）
+     * ※afterEnter, beforeLeave, afterLeave, leaveCancelledは今回は不要（以下の3つだけでアニメーションを作るのは良くある形）
      */
     beforeEnter(el) {
       // 現れる前
+      el.style.transform = "scale(0)";
     },
     enter(el, done) {
       // 現れる時（イメージはtransitionのCSSの"-enter-active"の部分）
@@ -91,27 +93,48 @@ export default {
       // done()関数の役割：非同期処理を実行できるようにするためのもの
       // ※CSSのアニメーションが定義されている場合にはdone()は省略可能（CSSのアニメーションが未定義ならdone()は必須）
       // ※CSS・JavaScriptのアニメーションの両方を定義して同時に使える。done()がない場合は両方のアニメーションが実行されるが、done()がある場合はCSSのアニメーションが実行されていてもdone()が呼ばれた時点でアニメーションは強制終了になる
+      let scale = 0;
+      const interval = setInterval(() => {
+        el.style.transform = `scale(${scale})`;
+        scale += 0.1;
+        if (scale > 1) {
+          clearInterval(interval);
+          done();
+        }
+      }, 100);
     },
-    afterEnter(el) {
-      // 現れた後
-    },
-    enterCancelled(el) {
+    // afterEnter() {
+    //   // 現れた後
+    //   // ※今回はscale(1)になるので定義不要
+    // },
+    enterCancelled() {
       // 現れるトランジション・アニメーションがキャンセルされた時
       // ex) アニメーション実行中にDOMが消えたりしてアニメーションが実行できなくなった時
     },
-    beforeLeave(el) {
-      // 消える前
-    },
+    // beforeLeave() {
+    //   // 消える前
+    //   // ※今回はscale(1)から消えていくので定義不要
+    // },
     leave(el, done) {
       // 消える時（イメージはtransitionのCSSの"-leave-active"の部分）
+      let scale = 1;
+      const interval = setInterval(() => {
+        el.style.transform = `scale(${scale})`;
+        scale -= 0.1;
+        if (scale < 0) {
+          clearInterval(interval);
+          done();
+        }
+      }, 100);
     },
-    afterLeave(el) {
-      // 消えた後
-    },
-    leaveCancelled(el) {
-      // 消えるトランジション・アニメーションがキャンセルされたとき
-      // ※v-showの時だけ実行される
-    },
+    // afterLeave() {
+    //   // 消えた後
+    //   // ※今回は消えた後はscale(0)なので定義不要
+    // },
+    // leaveCancelled() {
+    //   // 消えるトランジション・アニメーションがキャンセルされたとき
+    //   // ※v-showの時だけ実行される
+    // },
   },
 };
 </script>
