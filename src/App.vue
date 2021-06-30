@@ -1,10 +1,8 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">Home</router-link>
-        <!-- router-linkは、デフォルトではaタグになるが、tag属性で任意のタグに変更できる
-             <router-link class="navbar-brand" to="/" tag="div">Home</router-link> -->
         <button
           class="navbar-toggler"
           type="button"
