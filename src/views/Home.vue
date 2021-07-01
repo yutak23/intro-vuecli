@@ -11,8 +11,6 @@
 export default {
   methods: {
     toUsers() {
-      // 以下はどちらでも可
-      // this.$router.push("users");
       this.$router.push({ path: "users" });
     },
   },
