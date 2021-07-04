@@ -19,7 +19,7 @@ export default new Router({
             /** childrenのpathは、"/"から初めてはダメ */
             children: [
                 { path: "posts", component: UserPosts },
-                { path: "profile", component: UsersProfile }]
+                { path: "profile", component: UsersProfile, name: 'users-id-profile' }]
         }
     ]
 });
