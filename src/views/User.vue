@@ -6,8 +6,8 @@
     <hr />
     <h1>User No. {{ id }}</h1>
     <router-link :to="'/users/' + (Number(id) + 1) + '/profile'"
-      >次のユーザ</router-link
-    >
+      >次のユーザ
+    </router-link>
     <router-view></router-view>
   </div>
 </template>
