@@ -10,7 +10,10 @@
 
 <script>
 export default {
-  /** propsで定義する変数は、vue-routerのパスに書いた":(コロン)～"の～の部分を書く */
+  /**
+   * propsで定義する変数は、vue-routerのパスに書いた":(コロン)～"の～の部分を書く
+   * https://router.vuejs.org/ja/guide/essentials/passing-props.html
+   */
   props: ["id"],
 };
 </script>
