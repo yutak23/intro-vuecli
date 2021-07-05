@@ -2,10 +2,7 @@
   <div>
     <router-view name="header"></router-view>
     <main class="container-sm">
-      <!-- router-viewはある意味動的コンポーネントみたいなものなのでトランジションも適応可能 -->
-      <transition name="fade" mode="out-in">
-        <router-view></router-view>
-      </transition>
+      <router-view></router-view>
     </main>
   </div>
 </template>

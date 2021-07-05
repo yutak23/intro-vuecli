@@ -27,7 +27,12 @@
           <li class="nav-item">
             <router-link
               class="nav-link"
-              to="/users"
+              :to="{
+                name: 'users-id-profile',
+                params: { id: 1 },
+                query: { lang: 'ja', page: 2 },
+                hash: '#next-user',
+              }"
               exact
               active-class="link--active"
               >Users

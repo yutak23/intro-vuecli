@@ -26,7 +26,6 @@ export default new Router({
                 default: Users,
                 header: HeaderUsers
             },
-            /** 名前付きビューを用いる場合には、書くビュー毎にpropsを設定する必要があるので注意 */
             props: {
                 default: true,
                 header: false
@@ -36,16 +35,29 @@ export default new Router({
                 { path: "profile", component: UsersProfile, name: 'users-id-profile' }]
         },
         {
-            /** redirectは以下のような書き方ができ、最後のnameのやつはHome.vueの「Usersのページに行く」ボタンを押下したのと同じ動きになる */
             path: "/hello",
             redirect: "/"
-            // redirect: { path: "/" }
-            // redirect: { name: "users-id-profile", params: { id: 1 } }
         },
-        /** 以下の設定により、上記のroute設定に合致しないURLは全てredirectで定義しているURLになる */
         {
             path: "*",
             redirect: "/"
         }
-    ]
+    ],
+    scrollBehavior(to, from, savePosition) {
+        console.log("to", to);
+        console.log("from", from);
+        console.log("savePosition", savePosition);
+        if (savePosition) {
+            return savePosition;
+        }
+
+        if (to.hash) {
+            return {
+                selector: "#next-user",
+                offset: { x: 0, y: 100 }
+            }
+        }
+
+        return { x: 0, y: 0 };
+    }
 });
