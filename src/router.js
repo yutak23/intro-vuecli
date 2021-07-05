@@ -34,6 +34,18 @@ export default new Router({
             children: [
                 { path: "posts", component: UserPosts },
                 { path: "profile", component: UsersProfile, name: 'users-id-profile' }]
+        },
+        {
+            /** redirectは以下のような書き方ができ、最後のnameのやつはHome.vueの「Usersのページに行く」ボタンを押下したのと同じ動きになる */
+            path: "/hello",
+            redirect: "/"
+            // redirect: { path: "/" }
+            // redirect: { name: "users-id-profile", params: { id: 1 } }
+        },
+        /** 以下の設定により、上記のroute設定に合致しないURLは全てredirectで定義しているURLになる */
+        {
+            path: "*",
+            redirect: "/"
         }
     ]
 });
