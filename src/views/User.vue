@@ -5,14 +5,15 @@
     <router-link to="/users/2">ユーザ２</router-link>
     <hr />
     <h1>User No. {{ id }}</h1>
-    <!-- 以下の書き方①・②は動作としては同じで、②が名前付きルートを使った分かりやすい動的なURLの作成方法 -->
-    <!-- 書き方① -->
-    <router-link :to="'/users/' + (Number(id) + 1) + '/profile'">
+    <router-link :to="'/users/' + (Number(id) + 1) + '/profile?lang=ja&page=2'">
       次のユーザ
     </router-link>
-    <!-- 書き方② -->
     <router-link
-      :to="{ name: 'users-id-profile', params: { id: Number(id) + 1 } }"
+      :to="{
+        name: 'users-id-profile',
+        params: { id: Number(id) + 1 },
+        query: { lang: 'ja', page: 2 },
+      }"
     >
       次のユーザ
     </router-link>
@@ -22,10 +23,6 @@
 
 <script>
 export default {
-  /**
-   * propsで定義する変数は、vue-routerのパスに書いた":(コロン)～"の～の部分を書く
-   * https://router.vuejs.org/ja/guide/essentials/passing-props.html
-   */
   props: ["id"],
 };
 </script>
