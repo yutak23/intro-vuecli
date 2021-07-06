@@ -44,20 +44,32 @@ export default new Router({
         }
     ],
     scrollBehavior(to, from, savePosition) {
-        console.log("to", to);
-        console.log("from", from);
-        console.log("savePosition", savePosition);
-        if (savePosition) {
-            return savePosition;
+        // パスが同じ時はすぐにscrollBehaviorを実行する
+        if (to.path.match("^/users/") && from.path.match("^/users/")) {
+            this.app.$root.$nextTick(() => this.app.$root.$emit('triggerScroll'));
         }
 
-        if (to.hash) {
-            return {
-                selector: "#next-user",
-                offset: { x: 0, y: 100 }
-            }
-        }
+        return new Promise(resolve => {
+            // this：new Router()のインスタンス自体の事
+            // this.app：new Router()インスタンスが挿入・適用されるVueインスタンス（今回で言えばmain.jsのVueインスタンス）
+            // this.app === this.app.$root
+            // $once($on)：$emitで発火させたeventの処理を書ける構文（triggerScrollという$emitが発火した時にcallback関数が実行される）
+            this.app.$root.$once('triggerScroll', () => {
+                let position = { x: 0, y: 0 };
 
-        return { x: 0, y: 0 };
+                if (savePosition) {
+                    position = savePosition;
+                }
+
+                if (to.hash) {
+                    position = {
+                        selector: "#next-user",
+                        offset: { x: 0, y: 100 }
+                    }
+                }
+
+                resolve(position);
+            });
+        });
     }
 });
