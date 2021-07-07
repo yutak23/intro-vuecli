@@ -13,9 +13,6 @@
 export default {
   methods: {
     beforeEnter() {
-      // this.$root：これはmain.jsの一番上の階層にあるVueインスタンスの事
-      // ※単なるthisはここで言えば、App.vueというsingle file componentのVueインスタンス
-      // this.$root.$emit：これにより、main.jsのVueインスタンスにtriggerScrollというイベントを発火させることができ、そのイベントをscrollBehavior関数が検知する事で非同期のscrollBehaviorの振る舞いが実装されている
       this.$root.$emit("triggerScroll");
     },
   },
