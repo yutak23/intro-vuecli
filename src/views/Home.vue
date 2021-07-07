@@ -4,11 +4,17 @@
     <button type="button" class="btn btn-primary" @click="toUsers">
       Usersのページに行く
     </button>
+    <p>{{ count }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    count() {
+      return this.$store.state.count;
+    },
+  },
   methods: {
     toUsers() {
       this.$router.push({

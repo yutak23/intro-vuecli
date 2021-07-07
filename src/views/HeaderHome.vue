@@ -38,11 +38,40 @@
               >Users
             </router-link>
           </li>
+          <li class="nav-item">
+            <button
+              type="button"
+              class="btn btn-secondary ms-2"
+              @click="increment"
+            >
+              +1
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary ms-2"
+              @click="decrement"
+            >
+              -1
+            </button>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  methods: {
+    increment() {
+      this.$store.state.count++;
+    },
+    decrement() {
+      this.$store.state.count--;
+    },
+  },
+};
+</script>
 
 <style scoped>
 .link--active {
