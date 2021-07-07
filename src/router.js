@@ -18,11 +18,6 @@ export default new Router({
             components: {
                 default: Home,
                 header: HeaderHome
-            },
-            // 使い方はbeforeEach()と全く同じ
-            beforeEnter(to, from, next) {
-                // next(false); <- これを設定するとHomeのURLに遷移しなくなる
-                next();
             }
         },
         {
