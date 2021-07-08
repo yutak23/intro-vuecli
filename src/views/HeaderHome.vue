@@ -42,14 +42,24 @@
             <button
               type="button"
               class="btn btn-secondary ms-2"
-              @click="increment(2)"
+              @click="increment"
             >
               +1
+            </button>
+          </li>
+
+          <li class="nav-item">
+            <button
+              type="button"
+              class="btn btn-secondary ms-2"
+              @click="incrementAsync"
+            >
+              遅延+1
             </button>
             <button
               type="button"
               class="btn btn-secondary ms-2"
-              @click="decrement(2)"
+              @click="decrement"
             >
               -1
             </button>
@@ -61,11 +71,19 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-
 export default {
   methods: {
-    ...mapMutations(["increment", "decrement"]),
+    // このように実装すると、コンポーネントでcommitをしない（dispatchでactionsを呼びそこからmutationsを実行する）というルールにする事もできる
+    // それによりstore.jsに処理の実装を集中させられる
+    increment() {
+      this.$store.dispatch("increment", 2);
+    },
+    incrementAsync() {
+      this.$store.dispatch("incrementAsync", 2);
+    },
+    decrement() {
+      this.$store.dispatch("decrement", 2);
+    },
   },
 };
 </script>
