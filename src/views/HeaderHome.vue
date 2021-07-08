@@ -42,7 +42,7 @@
             <button
               type="button"
               class="btn btn-secondary ms-2"
-              @click="increment(2)"
+              @click="increment({ number: 2, name: 'Hello World' })"
             >
               +1
             </button>

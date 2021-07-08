@@ -20,8 +20,9 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        increment(context, number) {
+        increment(context, { number, name }) {
             context.commit('increment', number);
+            console.log(name);
         },
         // 以下の{ commit }はES6の書き方でcontextのcommitだけを使うという意味で直接呼び出せる
         decrement({ commit }, number) {
