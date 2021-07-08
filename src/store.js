@@ -5,11 +5,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        count: 2
+        count: 2,
+        message: ""
     },
     getters: {
         doubleCount: state => state.count * 2,
-        tripleCount: state => state.count * 3
+        tripleCount: state => state.count * 3,
+        message: state => state.message
     },
     mutations: {
         increment(state, number) {
@@ -17,6 +19,9 @@ export default new Vuex.Store({
         },
         decrement(state, number) {
             state.count -= number;
+        },
+        updateMessage(state, newMessage) {
+            state.message = newMessage;
         }
     },
     actions: {
@@ -24,15 +29,16 @@ export default new Vuex.Store({
             context.commit('increment', number);
             console.log(name);
         },
-        // 以下の{ commit }はES6の書き方でcontextのcommitだけを使うという意味で直接呼び出せる
         decrement({ commit }, number) {
             commit('decrement', number);
         },
-        // actionsを使う事で非同期処理も書ける
         incrementAsync({ commit }, number) {
             setTimeout(() => {
                 commit('increment', number);
             }, 1000)
+        },
+        updateMessage({ commit }, newMessage) {
+            commit("updateMessage", newMessage);
         }
     }
 });

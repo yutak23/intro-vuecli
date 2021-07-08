@@ -7,8 +7,17 @@
     <p>{{ count }}</p>
     <p>{{ doubleCount }}</p>
     <p>{{ tripleCount }}</p>
-    <!-- <p>{{ myComponentDoubleCount }}</p> -->
-    <!-- <p>{{ myComponentTripleCount }}</p> -->
+    <!--
+      v-modelを使わないパターン
+      <input
+        type="text"
+        class="form-control"
+        :value="message"
+        @input="updateMessage"
+      />
+    -->
+    <input type="text" class="form-control" v-model="message" />
+    <p>{{ message }}</p>
   </div>
 </template>
 
@@ -16,19 +25,27 @@
 import { mapGetters } from "vuex";
 
 export default {
-  // mapGettersはES6のスプレッド演算子を使う事で、他のcomputedと共存させる事ができる
   computed: {
     count() {
       return 1;
     },
     ...mapGetters(["doubleCount", "tripleCount"]),
+    // 以下のようにSetter的な使い方をする事でv-modelを実現できる
+    // ※computedのset()はあんまり使わない
+    message: {
+      get() {
+        return this.$store.getters.message;
+      },
+      set(value) {
+        this.$store.dispatch("updateMessage", value);
+      },
+    },
   },
-  // 以下のようにmapGettersの中身をオブジェクトにし、computedの名前をコンポーネント側で指定する事も可能
-  // computed: mapGetters({
-  //   myComponentDoubleCount: "doubleCount",
-  //   myComponentTripleCount: "tripleCount",
-  // }),
   methods: {
+    /** v-modelを使わないパターン */
+    // updateMessage(event) {
+    //   this.$store.dispatch("updateMessage", event.target.value);
+    // },
     toUsers() {
       this.$router.push({
         name: "users-id-profile",
