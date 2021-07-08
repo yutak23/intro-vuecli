@@ -42,14 +42,14 @@
             <button
               type="button"
               class="btn btn-secondary ms-2"
-              @click="increment"
+              @click="increment(2)"
             >
               +1
             </button>
             <button
               type="button"
               class="btn btn-secondary ms-2"
-              @click="decrement"
+              @click="decrement(2)"
             >
               -1
             </button>
@@ -61,16 +61,11 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   methods: {
-    increment() {
-      // mutations・commitの組み合わせになるので、ソースコードを読み解いていく時にVuexのstoreの値を書き換えているという事が一目でわかる
-      // this.$store.state.count++; ←これだと値を参照している or 変更しているをsの場で判断する必要があり大変
-      this.$store.commit("increment", 2);
-    },
-    decrement() {
-      this.$store.commit("decrement", 2);
-    },
+    ...mapMutations(["increment", "decrement"]),
   },
 };
 </script>
