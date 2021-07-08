@@ -64,10 +64,12 @@
 export default {
   methods: {
     increment() {
-      this.$store.state.count++;
+      // mutations・commitの組み合わせになるので、ソースコードを読み解いていく時にVuexのstoreの値を書き換えているという事が一目でわかる
+      // this.$store.state.count++; ←これだと値を参照している or 変更しているをsの場で判断する必要があり大変
+      this.$store.commit("increment", 2);
     },
     decrement() {
-      this.$store.state.count--;
+      this.$store.commit("decrement", 2);
     },
   },
 };
