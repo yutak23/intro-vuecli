@@ -74,7 +74,7 @@
 import { mapActions } from "vuex";
 export default {
   methods: {
-    ...mapActions(["increment", "incrementAsync", "decrement"]),
+    ...mapActions("count", ["increment", "incrementAsync", "decrement"]),
   },
 };
 </script>

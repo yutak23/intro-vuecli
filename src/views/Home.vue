@@ -29,9 +29,14 @@ export default {
     count() {
       return 1;
     },
-    ...mapGetters(["doubleCount", "tripleCount"]),
-    // 以下のようにSetter的な使い方をする事でv-modelを実現できる
-    // ※computedのset()はあんまり使わない
+    ...mapGetters("count", ["doubleCount", "tripleCount"]),
+    /** mapGettersを使わない時は以下のように書く */
+    // doubleCount() {
+    //   return this.$store.getters["count/doubleCount"];
+    // },
+    // tripleCount() {
+    //   return this.$store.getters["count/tripleCount"];
+    // },
     message: {
       get() {
         return this.$store.getters.message;
