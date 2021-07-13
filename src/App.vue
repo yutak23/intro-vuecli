@@ -40,16 +40,23 @@ export default {
     };
   },
   async created() {
-    const response = await axios.get(
-      "https://firestore.googleapis.com/v1/projects/vuejs-http-80ec1/databases/(default)/documents/comments"
-    );
-    this.posts = response.data.documents;
+    try {
+      const response = await axios.get("/comments");
+      this.posts = response.data.documents;
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.message);
+      } else {
+        console.log(error.message);
+      }
+    }
   },
   methods: {
     async createComment() {
-      const response = await axios.post(
-        "https://firestore.googleapis.com/v1/projects/vuejs-http-80ec1/databases/(default)/documents/comments",
-        {
+      try {
+        const response = await axios.post("/comments", {
           fields: {
             name: {
               stringValue: this.name,
@@ -58,9 +65,17 @@ export default {
               stringValue: this.comment,
             },
           },
+        });
+        console.log(response);
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response.status);
+          console.log(error.response.data);
+          console.log(error.message);
+        } else {
+          console.log(error.message);
         }
-      );
-      console.log(response);
+      }
       this.name = "";
       this.comment = "";
     },
