@@ -44,41 +44,42 @@ export default {
       const response = await axios.get("/comments");
       this.posts = response.data.documents;
     } catch (error) {
-      if (error.response) {
-        console.log(error.response.status);
-        console.log(error.response.data);
-        console.log(error.message);
-      } else {
-        console.log(error.message);
-      }
+      errorHandler(error);
     }
   },
   methods: {
     async createComment() {
-      try {
-        const response = await axios.post("/comments", {
-          fields: {
-            name: {
-              stringValue: this.name,
-            },
-            comment: {
-              stringValue: this.comment,
-            },
+      const data = {
+        fields: {
+          name: {
+            stringValue: this.name,
           },
-        });
+          comment: {
+            stringValue: this.comment,
+          },
+        },
+      };
+
+      try {
+        const response = await axios.post("/comments", data);
         console.log(response);
       } catch (error) {
-        if (error.response) {
-          console.log(error.response.status);
-          console.log(error.response.data);
-          console.log(error.message);
-        } else {
-          console.log(error.message);
-        }
+        errorHandler(error);
       }
+
       this.name = "";
       this.comment = "";
     },
   },
+};
+
+const errorHandler = (error) => {
+  if (error.response) {
+    console.log(error.response.status);
+    console.log(error.response.data);
+    console.log(error.message);
+  } else {
+    console.log(error.message);
+  }
 };
 </script>
