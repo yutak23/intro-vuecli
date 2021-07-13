@@ -1,27 +1,52 @@
 <template>
   <div class="container-sm mt-5">
     <h3>掲示板に投稿する</h3>
-    <form>
-      <div class="mb-3">
-        <label for="name" class="form-label">ニックネーム</label>
-        <input type="text" class="form-control" id="name" v-model="name" />
-      </div>
-      <div class="mb-3">
-        <label for="comment" class="form-label">コメント</label>
-        <textarea class="form-control" id="comment" v-model="comment" />
-      </div>
-    </form>
+    <div class="mb-3">
+      <label for="name" class="form-label">ニックネーム</label>
+      <input type="text" class="form-control" id="name" v-model="name" />
+    </div>
+    <div class="mb-3">
+      <label for="comment" class="form-label">コメント</label>
+      <textarea class="form-control" id="comment" v-model="comment" />
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" @click="createComment">
+        コメントをサーバに送る
+      </button>
+    </div>
     <h2>掲示板</h2>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       name: "",
       comment: "",
     };
+  },
+  methods: {
+    async createComment() {
+      const response = await axios.post(
+        "https://firestore.googleapis.com/v1/projects/vuejs-http-80ec1/databases/(default)/documents/comments",
+        {
+          fields: {
+            name: {
+              stringValue: this.name,
+            },
+            comment: {
+              stringValue: this.comment,
+            },
+          },
+        }
+      );
+      console.log(response);
+      this.name = "";
+      this.comment = "";
+    },
   },
 };
 </script>
