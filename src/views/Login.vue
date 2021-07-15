@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import axios from "../axios-auth";
+
 export default {
   data() {
     return {
@@ -46,8 +48,20 @@ export default {
     };
   },
   methods: {
-    login() {
-      console.log(this.email);
+    async login() {
+      const data = {
+        email: this.email,
+        password: this.password,
+        returnSecureToken: true,
+      };
+
+      const response = await axios.post(
+        "/accounts:signInWithPassword?key=AIzaSyDck1HyE9xePRxXQfdXIfe_4g35ds3AARI",
+        data
+      );
+      console.log(response);
+      this.email = "";
+      this.password = "";
     },
   },
 };

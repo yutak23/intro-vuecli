@@ -30,7 +30,7 @@
           </label>
         </div> -->
       <button class="w-100 btn btn-lg btn-primary" @click="register">
-        ログイン
+        登録
       </button>
       <p class="mt-5 mb-3 text-muted">&copy; 2021–2021</p>
     </div>
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import axios from "../axios-auth";
+
 export default {
   data() {
     return {
@@ -46,8 +48,20 @@ export default {
     };
   },
   methods: {
-    register() {
-      console.log(this.email);
+    async register() {
+      const data = {
+        email: this.email,
+        password: this.password,
+        returnSecureToken: true,
+      };
+
+      const response = await axios.post(
+        "/accounts:signUp?key=AIzaSyDck1HyE9xePRxXQfdXIfe_4g35ds3AARI",
+        data
+      );
+      console.log(response);
+      this.email = "";
+      this.password = "";
     },
   },
 };
