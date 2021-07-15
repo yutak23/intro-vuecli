@@ -2,7 +2,10 @@
   <main>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container-fluid">
-        <router-link class="navbar-brand" to="/">掲示板</router-link>
+        <router-link class="navbar-brand" to="/" v-if="isAuthenticated">
+          掲示板
+        </router-link>
+        <div class="navbar-brand" v-else>掲示板へようこそ</div>
         <button
           class="navbar-toggler"
           type="button"
@@ -16,26 +19,28 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="nav nav-pills">
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                to="/login"
-                exact
-                active-class="active"
-              >
-                ログイン
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                to="/register"
-                exact
-                active-class="active"
-              >
-                登録
-              </router-link>
-            </li>
+            <template v-if="!isAuthenticated">
+              <li class="nav-item">
+                <router-link
+                  class="nav-link"
+                  to="/login"
+                  exact
+                  active-class="active"
+                >
+                  ログイン
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  class="nav-link"
+                  to="/register"
+                  exact
+                  active-class="active"
+                >
+                  登録
+                </router-link>
+              </li>
+            </template>
           </ul>
         </div>
       </div>
@@ -45,6 +50,16 @@
     </div>
   </main>
 </template>
+
+<script>
+export default {
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.idToken !== null;
+    },
+  },
+};
+</script>
 
 <style scoped>
 main {
