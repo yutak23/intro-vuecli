@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import axios from "../axios-auth";
+import router from "../router";
 
 Vue.use(Vuex);
 
@@ -28,6 +29,7 @@ export default new Vuex.Store({
             try {
                 const response = await axios.post(`/accounts:signUp?key=${apiKey}`, data);
                 commit('updadeIdToken', response.data.idToken);
+                router.push('/');
             } catch (error) {
                 errorHandler(error);
             }
@@ -42,6 +44,7 @@ export default new Vuex.Store({
             try {
                 const response = await axios.post(`/accounts:signInWithPassword?key=${apiKey}`, data);
                 commit('updadeIdToken', response.data.idToken)
+                router.push('/');
             } catch (error) {
                 errorHandler(error);
             }
