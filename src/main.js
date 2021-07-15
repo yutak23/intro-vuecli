@@ -4,6 +4,8 @@ import App from "./App.vue"
 import axios from "axios";
 
 import router from "./router";
+// ./store/indexの/indexは省略可
+import store from "./store";
 
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -38,6 +40,7 @@ axios.interceptors.response.eject(interceptersResponse);
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount("#app")
 

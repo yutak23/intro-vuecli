@@ -38,8 +38,6 @@
 </template>
 
 <script>
-import axios from "../axios-auth";
-
 export default {
   data() {
     return {
@@ -48,18 +46,12 @@ export default {
     };
   },
   methods: {
-    async register() {
-      const data = {
+    register() {
+      this.$store.dispatch("register", {
         email: this.email,
         password: this.password,
-        returnSecureToken: true,
-      };
+      });
 
-      const response = await axios.post(
-        "/accounts:signUp?key=AIzaSyDck1HyE9xePRxXQfdXIfe_4g35ds3AARI",
-        data
-      );
-      console.log(response);
       this.email = "";
       this.password = "";
     },
