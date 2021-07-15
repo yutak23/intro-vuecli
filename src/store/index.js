@@ -56,7 +56,7 @@ export default new Vuex.Store({
                     expiresIn: response.data.expiresIn,
                     refreshToken: response.data.refreshToken
                 });
-                router.push('/');
+                router.push("/");
             } catch (error) {
                 errorHandler(error);
             }
@@ -75,10 +75,17 @@ export default new Vuex.Store({
                     expiresIn: response.data.expiresIn,
                     refreshToken: response.data.refreshToken
                 });
-                router.push('/');
+                router.push("/");
             } catch (error) {
                 errorHandler(error);
             }
+        },
+        logout({ commit }) {
+            commit("updadeIdToken", null);
+            localStorage.removeItem("idToken");
+            localStorage.removeItem("expiryTimeMs");
+            localStorage.removeItem("refreshToken");
+            router.push("/login");
         },
         async refreshIdToken({ dispatch }, refreshToken) {
             const resRefresh = await axiosRefresh.post(`/token?key=${apiKey}`, {
@@ -92,13 +99,13 @@ export default new Vuex.Store({
             });
         },
         setAuthData({ commit, dispatch }, authData) {
-            commit('updadeIdToken', authData.idToken);
+            commit("updadeIdToken", authData.idToken);
 
             const now = new Date();
             const expiryTimeMs = now.getTime() + authData.expiresIn * 1000;
-            localStorage.setItem('idToken', authData.idToken);
-            localStorage.setItem('expiryTimeMs', expiryTimeMs);
-            localStorage.setItem('refreshToken', authData.refreshToken);
+            localStorage.setItem("idToken", authData.idToken);
+            localStorage.setItem("expiryTimeMs", expiryTimeMs);
+            localStorage.setItem("refreshToken", authData.refreshToken);
 
             setTimeout(() => {
                 dispatch("refreshIdToken", authData.refreshToken);

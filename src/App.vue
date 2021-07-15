@@ -2,9 +2,9 @@
   <main>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container-fluid">
-        <router-link class="navbar-brand" to="/" v-if="isAuthenticated">
-          掲示板
-        </router-link>
+        <template v-if="isAuthenticated">
+          <router-link class="navbar-brand" to="/"> 掲示板 </router-link>
+        </template>
         <div class="navbar-brand" v-else>掲示板へようこそ</div>
         <button
           class="navbar-toggler"
@@ -18,7 +18,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="nav nav-pills">
+          <ul class="nav nav-pills me-auto">
             <template v-if="!isAuthenticated">
               <li class="nav-item">
                 <router-link
@@ -42,6 +42,9 @@
               </li>
             </template>
           </ul>
+          <button class="btn btn-secondary" type="button" @click="logout">
+            ログアウト
+          </button>
         </div>
       </div>
     </nav>
@@ -56,6 +59,11 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.getters.idToken !== null;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
     },
   },
 };
