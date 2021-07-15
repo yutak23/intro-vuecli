@@ -39,9 +39,20 @@ export default {
       posts: [],
     };
   },
+  computed: {
+    idToken() {
+      return this.$store.getters.idToken;
+    },
+  },
   async created() {
+    const header = {
+      headers: {
+        Authorization: `Bearer ${this.idToken}`,
+      },
+    };
+
     try {
-      const response = await axios.get("/comments");
+      const response = await axios.get("/comments", header);
       this.posts = response.data.documents;
     } catch (error) {
       errorHandler(error);
@@ -60,8 +71,14 @@ export default {
         },
       };
 
+      const header = {
+        headers: {
+          Authorization: `Bearer ${this.idToken}`,
+        },
+      };
+
       try {
-        const response = await axios.post("/comments", data);
+        const response = await axios.post("/comments", data, header);
         console.log(response);
       } catch (error) {
         errorHandler(error);

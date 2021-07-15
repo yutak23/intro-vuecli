@@ -9,6 +9,9 @@ export default new Vuex.Store({
     state: {
         idToken: null
     },
+    getters: {
+        idToken: state => state.idToken
+    },
     mutations: {
         updadeIdToken(state, idToken) {
             state.idToken = idToken;
