@@ -38,9 +38,14 @@ const interceptersResponse = axios.interceptors.response.use(
 axios.interceptors.request.eject(interceptersRequest);
 axios.interceptors.response.eject(interceptersResponse);
 
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-}).$mount("#app")
+// refresh Tokenを取得する前に、main.jsでnew Vue()が走らないようにするため
+store.dispatch('autoLogin').then(() => {
+  new Vue({
+    router,
+    store,
+    render: h => h(App),
+  }).$mount("#app")
+});
+
+
 
