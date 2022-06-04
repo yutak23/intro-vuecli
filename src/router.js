@@ -4,11 +4,12 @@ import Router from 'vue-router';
 import Comments from './views/CommentsPage.vue';
 import Login from './views/LoginPage.vue';
 import Register from './views/RegisterPage.vue';
+// eslint-disable-next-line import/no-cycle
 import store from './store';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
 	mode: 'history',
 	routes: [
 		{
@@ -46,3 +47,4 @@ export default new Router({
 		}
 	]
 });
+export default router;

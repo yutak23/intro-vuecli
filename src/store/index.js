@@ -3,11 +3,24 @@ import Vuex from 'vuex';
 
 import axios from '../axios-auth';
 import axiosRefresh from '../axios-refresh';
+// eslint-disable-next-line import/no-cycle
 import router from '../router';
+
+const apiKey = 'AIzaSyDck1HyE9xePRxXQfdXIfe_4g35ds3AARI';
+
+const errorHandler = (error) => {
+	if (error.response) {
+		console.log(error.response.status);
+		console.log(error.response.data);
+		console.log(error.message);
+	} else {
+		console.log(error.message);
+	}
+};
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const vuex = new Vuex.Store({
 	state: {
 		idToken: null
 	},
@@ -59,6 +72,7 @@ export default new Vuex.Store({
 					expiresIn: response.data.expiresIn,
 					refreshToken: response.data.refreshToken
 				});
+
 				router.push('/');
 			} catch (error) {
 				errorHandler(error);
@@ -119,14 +133,4 @@ export default new Vuex.Store({
 		}
 	}
 });
-
-const apiKey = 'AIzaSyDck1HyE9xePRxXQfdXIfe_4g35ds3AARI';
-const errorHandler = (error) => {
-	if (error.response) {
-		console.log(error.response.status);
-		console.log(error.response.data);
-		console.log(error.message);
-	} else {
-		console.log(error.message);
-	}
-};
+export default vuex;

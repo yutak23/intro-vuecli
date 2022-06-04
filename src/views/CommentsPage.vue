@@ -56,7 +56,7 @@ export default {
 			const response = await axios.get('/comments', header);
 			this.posts = response.data.documents;
 		} catch (error) {
-			errorHandler(error);
+			this.errorHandler(error);
 		}
 	},
 	methods: {
@@ -82,22 +82,21 @@ export default {
 				const response = await axios.post('/comments', data, header);
 				console.log(response);
 			} catch (error) {
-				errorHandler(error);
+				this.errorHandler(error);
 			}
 
 			this.name = '';
 			this.comment = '';
+		},
+		errorHandler(error) {
+			if (error.response) {
+				console.log(error.response.status);
+				console.log(error.response.data);
+				console.log(error.message);
+			} else {
+				console.log(error.message);
+			}
 		}
-	}
-};
-
-const errorHandler = (error) => {
-	if (error.response) {
-		console.log(error.response.status);
-		console.log(error.response.data);
-		console.log(error.message);
-	} else {
-		console.log(error.message);
 	}
 };
 </script>

@@ -6,6 +6,8 @@
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
 		"lint": "vue-cli-service lint",
+		"eslint": "npx eslint .",
+		"eslint:fix": "npx eslint --fix .",
 		"style:fix": "npx prettier --write ."
 	},
 	"dependencies": {
@@ -20,10 +22,14 @@
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "~5.0.4",
 		"@vue/cli-plugin-eslint": "~5.0.4",
-		"@vue/cli-service": "~5.0.4",
+		"@vue/cli-service": "^5.0.4",
+		"@vue/eslint-config-airbnb": "^6.0.0",
 		"babel-eslint": "^10.1.0",
 		"eslint": "^8.17.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-vue": "^9.1.0",
+		"eslint-plugin-vuejs-accessibility": "^1.2.0",
 		"prettier": "^2.6.2",
 		"vue-template-compiler": "^2.6.14"
 	},

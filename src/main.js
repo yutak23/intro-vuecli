@@ -1,7 +1,6 @@
 import Vue from 'vue';
-import App from './App.vue';
-
 import axios from 'axios';
+import App from './App.vue';
 
 import router from './router';
 // ./store/indexの/indexは省略可
@@ -21,9 +20,7 @@ const interceptersRequest = axios.interceptors.request.use(
 		console.log('interceptors request', config);
 		return config;
 	},
-	(error) => {
-		return Promise.reject(error);
-	}
+	(error) => Promise.reject(error)
 );
 
 const interceptersResponse = axios.interceptors.response.use(
@@ -31,9 +28,7 @@ const interceptersResponse = axios.interceptors.response.use(
 		console.log('interceptors response', response);
 		return response;
 	},
-	(error) => {
-		return Promise.reject(error);
-	}
+	(error) => Promise.reject(error)
 );
 
 axios.interceptors.request.eject(interceptersRequest);
