@@ -1,7 +1,7 @@
 <template>
 	<div class="text-center main">
 		<div class="form-signin">
-			<h1 class="h3 mb-3 fw-normal">ログイン</h1>
+			<h1 class="h3 mb-3 fw-normal">登録</h1>
 
 			<div class="form-floating">
 				<input
@@ -29,8 +29,8 @@
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div> -->
-			<button class="w-100 btn btn-lg btn-primary" @click="login">
-				ログイン
+			<button class="w-100 btn btn-lg btn-primary" @click="register">
+				登録
 			</button>
 			<p class="mt-5 mb-3 text-muted">&copy; 2021–2021</p>
 		</div>
@@ -39,6 +39,7 @@
 
 <script>
 export default {
+	name: 'RegisterPage',
 	data() {
 		return {
 			email: '',
@@ -46,11 +47,12 @@ export default {
 		};
 	},
 	methods: {
-		login() {
-			this.$store.dispatch('login', {
+		register() {
+			this.$store.dispatch('register', {
 				email: this.email,
 				password: this.password
 			});
+
 			this.email = '';
 			this.password = '';
 		}

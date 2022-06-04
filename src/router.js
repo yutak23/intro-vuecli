@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Comments from './views/Comments.vue';
-import Login from './views/Login.vue';
-import Register from './views/Register.vue';
+import Comments from './views/CommentsPage.vue';
+import Login from './views/LoginPage.vue';
+import Register from './views/RegisterPage.vue';
 import store from './store';
 
 Vue.use(Router);

@@ -32,6 +32,7 @@
 import axios from 'axios';
 
 export default {
+	name: 'CommentsPage',
 	data() {
 		return {
 			name: '',
