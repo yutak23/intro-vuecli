@@ -30,6 +30,7 @@
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-vue": "^9.1.0",
 		"eslint-plugin-vuejs-accessibility": "^1.2.0",
+		"license-webpack-plugin": "^4.0.2",
 		"prettier": "^2.6.2",
 		"vue-template-compiler": "^2.6.14"
 	},

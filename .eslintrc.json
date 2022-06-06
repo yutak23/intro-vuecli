@@ -9,5 +9,6 @@
 		"@vue/airbnb",
 		"prettier"
 	],
-	"rules": { "vuejs-accessibility/label-has-for": "off" }
+	"rules": { "vuejs-accessibility/label-has-for": "off" },
+	"ignorePatterns": ["/dist"]
 }
