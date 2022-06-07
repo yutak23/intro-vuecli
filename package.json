@@ -31,8 +31,10 @@
 		"eslint-plugin-vue": "^9.1.0",
 		"eslint-plugin-vuejs-accessibility": "^1.2.0",
 		"license-webpack-plugin": "^4.0.2",
+		"luxon": "^2.4.0",
 		"prettier": "^2.6.2",
-		"vue-template-compiler": "^2.6.14"
+		"vue-template-compiler": "^2.6.14",
+		"webpack-version-file": "^0.1.6"
 	},
 	"browserslist": [
 		"> 1%",
