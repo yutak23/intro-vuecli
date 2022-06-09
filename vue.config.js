@@ -1,6 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const { LicenseWebpackPlugin } = require('license-webpack-plugin');
 const VersionFile = require('webpack-version-file');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { DateTime } = require('luxon');
 
 const dt = DateTime.now();
@@ -23,6 +25,11 @@ module.exports = {
 					timestamp: dt.toSeconds(),
 					environment: process.env.NODE_ENV || 'development'
 				}
+			}),
+			new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ja/),
+			new BundleAnalyzerPlugin({
+				analyzerMode: 'static',
+				reportFilename: './../report/index.html'
 			})
 		]
 	},

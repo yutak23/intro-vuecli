@@ -30,6 +30,8 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
+import snakeCase from 'lodash/snakeCase';
 
 export default {
 	name: 'CommentsPage',
@@ -46,6 +48,12 @@ export default {
 		}
 	},
 	async created() {
+		console.log(snakeCase('Foo Bar'));
+		console.log(
+			`日本語：${moment([2007, 0, 29]).locale('ja').fromNow()}`,
+			`英語：${moment([2007, 0, 29]).locale('en').fromNow()}`
+		);
+
 		const header = {
 			headers: {
 				Authorization: `Bearer ${this.idToken}`

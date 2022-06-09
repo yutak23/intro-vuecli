@@ -5,6 +5,7 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
+		"build:report": "vue-cli-service build --report",
 		"lint": "vue-cli-service lint",
 		"eslint": "npx eslint .",
 		"eslint:fix": "npx eslint --fix .",
@@ -15,11 +16,14 @@
 		"axios": "^0.27.2",
 		"bootstrap": "^5.1.3",
 		"core-js": "^3.22.8",
+		"lodash": "^4.17.21",
+		"moment": "^2.29.3",
 		"vue": "^2.6.14",
 		"vue-router": "^3.5.4",
 		"vuex": "^3.6.2"
 	},
 	"devDependencies": {
+		"@vue/cli": "^5.0.4",
 		"@vue/cli-plugin-babel": "~5.0.4",
 		"@vue/cli-plugin-eslint": "~5.0.4",
 		"@vue/cli-service": "^5.0.4",
@@ -34,6 +38,8 @@
 		"luxon": "^2.4.0",
 		"prettier": "^2.6.2",
 		"vue-template-compiler": "^2.6.14",
+		"webpack": "^5.73.0",
+		"webpack-bundle-analyzer": "^4.5.0",
 		"webpack-version-file": "^0.1.6"
 	},
 	"browserslist": [

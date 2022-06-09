@@ -44,6 +44,12 @@ const router = new Router({
 					next();
 				}
 			}
+		},
+		{
+			path: '*',
+			beforeEnter(to, from, next) {
+				next('/');
+			}
 		}
 	]
 });
