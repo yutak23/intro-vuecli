@@ -6,9 +6,7 @@ import router from './router';
 // ./store/indexの/indexは省略可
 import store from './store';
 
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/style/main.css';
+import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false;
 
@@ -39,6 +37,7 @@ store.dispatch('autoLogin').then(() => {
 	new Vue({
 		router,
 		store,
+		vuetify,
 		render: (h) => h(App)
 	}).$mount('#app');
 });
