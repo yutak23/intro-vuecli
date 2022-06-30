@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Comments from './views/CommentsPage.vue';
 import Login from './views/LoginPage.vue';
 import Register from './views/RegisterPage.vue';
+import TestPage from './views/TestPage.vue';
 // eslint-disable-next-line import/no-cycle
 import store from './store';
 
@@ -44,6 +45,10 @@ const router = new Router({
 					next();
 				}
 			}
+		},
+		{
+			path: '/testpage',
+			component: TestPage
 		},
 		{
 			path: '*',
