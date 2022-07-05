@@ -39,21 +39,31 @@
 
 		<v-main>
 			<v-container>
-				<v-card>
-					<form action="/begin" method="GET">
-						<v-card-title> Retryの検証 </v-card-title>
-						<v-card-text>
-							<v-text-field v-model="name" label="Name"></v-text-field>
-							<v-text-field v-model="name" label="Name"></v-text-field>
-							<v-text-field v-model="name" label="Name"></v-text-field>
-						</v-card-text>
-						<v-card-actions>
-							<v-spacer></v-spacer>
-							<v-btn color="primary" @click="get"> GET </v-btn>
-							<v-btn color="primary" @click="patch"> PATCH </v-btn>
-						</v-card-actions>
-					</form>
-				</v-card>
+				<v-row>
+					<v-col cols="12" sm="8" md="8" lg="8" xl="8">
+						<v-card>
+							<form action="/begin" method="GET">
+								<v-card-title> Retryの検証 </v-card-title>
+								<v-card-text>
+									<v-text-field v-model="user.id" label="Id"></v-text-field>
+									<v-text-field
+										v-model="user.email"
+										label="Email"
+									></v-text-field>
+									<v-text-field
+										v-model="user.fullName"
+										label="Fullname"
+									></v-text-field>
+								</v-card-text>
+								<v-card-actions>
+									<v-spacer></v-spacer>
+									<v-btn color="primary" @click="get"> GET </v-btn>
+									<v-btn color="primary" @click="patch"> PATCH </v-btn>
+								</v-card-actions>
+							</form>
+						</v-card>
+					</v-col>
+				</v-row>
 			</v-container>
 		</v-main>
 		<v-footer app padless>
@@ -69,12 +79,31 @@
 export default {
 	name: 'TestPage',
 	data: () => ({
+		id: 1,
+		user: {},
 		drawer: false,
 		dumyMenus: ['Foo', 'Bar', 'Fizz', 'Buzz']
 	}),
 	methods: {
-		get() {},
-		patch() {}
+		async get() {
+			try {
+				const { data: user } = await this.$axios.get(`/user/${this.id}`);
+				this.user = user;
+			} catch (e) {
+				console.error(e);
+			}
+		},
+		async patch() {
+			const { id, createdAt, updatedAt, ...patchUser } = this.user;
+			try {
+				const { data: user } = await this.$axios.patch(`/user/${this.id}`, {
+					...patchUser
+				});
+				this.user = user;
+			} catch (e) {
+				console.error(e);
+			}
+		}
 	}
 };
 </script>

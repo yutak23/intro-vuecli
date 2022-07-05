@@ -7,8 +7,10 @@ import router from './router';
 import store from './store';
 
 import vuetify from './plugins/vuetify';
+import customAxios from './plugins/custom-axios';
 
 Vue.config.productionTip = false;
+Vue.prototype.$axios = customAxios();
 
 axios.defaults.baseURL =
 	'https://firestore.googleapis.com/v1/projects/vuejs-http-80ec1/databases/(default)/documents';
