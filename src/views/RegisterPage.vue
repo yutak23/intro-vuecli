@@ -78,7 +78,11 @@
 						/>
 						<label for="floatingPassword">パスワード</label>
 					</div>
-					<button class="w-100 btn btn-lg btn-primary" @click="register">
+					<button
+						type="button"
+						class="w-100 btn btn-lg btn-primary"
+						@click="register"
+					>
 						登録
 					</button>
 					<p class="mt-5 mb-3 text-muted">&copy; 2021–2021</p>

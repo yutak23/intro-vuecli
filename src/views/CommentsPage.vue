@@ -59,7 +59,7 @@
 				<textarea class="form-control" id="comment" v-model="comment" />
 			</div>
 			<div class="mb-3">
-				<button class="btn btn-primary" @click="createComment">
+				<button type="button" class="btn btn-primary" @click="createComment">
 					コメントをサーバに送る
 				</button>
 			</div>
