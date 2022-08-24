@@ -84,6 +84,9 @@ export default {
 		drawer: false,
 		dumyMenus: ['Foo', 'Bar', 'Fizz', 'Buzz']
 	}),
+	created() {
+		console.log(process.env.VUE_APP_HOGE);
+	},
 	methods: {
 		async get() {
 			try {
