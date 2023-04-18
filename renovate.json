@@ -28,7 +28,7 @@
 				"moment",
 				"snakecase-keys"
 			],
-			"rangeStrategy": "replace"
+			"rangeStrategy": "bump"
 		}
 	],
 	"ignoreDeps": ["vue", "vue-router", "vuetify", "vuex"]
