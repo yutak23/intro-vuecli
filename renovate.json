@@ -19,9 +19,17 @@
 			"automerge": true
 		},
 		{
-			"matchPackageNames": ["axios"],
+			"matchPackageNames": [
+				"axios",
+				"axios-retry",
+				"camelcase-keys",
+				"core-js",
+				"lodash",
+				"moment",
+				"snakecase-keys"
+			],
 			"rangeStrategy": "replace"
 		}
 	],
-	"ignoreDeps": [""]
+	"ignoreDeps": ["vue", "vue-router", "vuetify", "vuex"]
 }
