@@ -35,7 +35,7 @@
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-import": "^2.27.5",
 		"eslint-plugin-vue": "^9.11.0",
-		"eslint-plugin-vuejs-accessibility": "^1.2.0",
+		"eslint-plugin-vuejs-accessibility": "^2.1.0",
 		"license-webpack-plugin": "^4.0.2",
 		"luxon": "^3.3.0",
 		"prettier": "^2.8.7",
