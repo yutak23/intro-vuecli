@@ -2,7 +2,11 @@ name: build-on-ci
 
 on:
   push:
-    branches: [main]
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - '**'
   workflow_dispatch:
 
 jobs:
