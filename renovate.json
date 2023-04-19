@@ -4,6 +4,7 @@
 		"config:base",
 		"group:allNonMajor",
 		":separateMultipleMajorReleases",
+		"schedule:daily",
 		":prConcurrentLimitNone",
 		":prHourlyLimitNone",
 		":timezone(Asia/Tokyo)"
